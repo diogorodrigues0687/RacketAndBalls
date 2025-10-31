@@ -29,6 +29,8 @@ deve estar sempre limitado ao intervalo [-6..6]. **/
 fun main() {
     println("Starting game...")
     var game = Game(area = Area(400, 600), balls = emptyList(), racket = Racket(40, 10, 15))
+    val dirX: IntRange = -6..6
+    val dirY: Int = 4
     onStart {
         val window = Canvas(game.area.width, game.area.height, BLACK)
         drawRacket(window, game.racket)
