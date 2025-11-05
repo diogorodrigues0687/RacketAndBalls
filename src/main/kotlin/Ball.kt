@@ -1,5 +1,4 @@
 import pt.isel.canvas.*
-import javax.swing.Spring.height
 
 /** Bolas do jogo**/
 data class Ball(val x: Int, val y: Int, val radius: Int, val dx: Int, val dy: Int, val color: Int = YELLOW)
@@ -22,4 +21,15 @@ fun moveY(ball: Ball): Ball {
         else -> ball.dy
     }
     return Ball(ball.x, ball.y + newYDirection, ball.radius, ball.dx, newYDirection, ball.color)
+}
+
+/**Função do movimento das bolas após colidir com a raquete**/
+fun reflection(ball: Ball, racket: Racket): Ball {
+    val newDirection = when {
+        ball.y + ball.radius > center.positions.y-> ball.dx
+        ball.y + ball.radius > mid.positions.y-> ball.dx - 1
+        ball.y + ball.radius > tip.positions.y -> ball.dx - 3
+        else -> ball.dx
+    }
+    return Ball(ball.x, ball.y + newDirection, ball.radius, newDirection, ball.dy, ball.color)
 }
